@@ -11,9 +11,12 @@ export default function contains(str, elem, options) {
   assertString(str);
   options = merge(options, defaultContainsOptions);
 
+  const elemStr = toString(elem);
+  if (!elemStr) return false;
+
   if (options.ignoreCase) {
-    return str.toLowerCase().split(toString(elem).toLowerCase()).length > options.minOccurrences;
+    return str.toLowerCase().split(elemStr.toLowerCase()).length > options.minOccurrences;
   }
 
-  return str.split(toString(elem)).length > options.minOccurrences;
+  return str.split(elemStr).length > options.minOccurrences;
 }
