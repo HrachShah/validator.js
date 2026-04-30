@@ -236,7 +236,6 @@ const validator = {
   blacklist,
   isWhitelisted,
   normalizeEmail,
-  toString,
   isSlug,
   isStrongPassword,
   isTaxID,
