@@ -16,6 +16,10 @@ export default function contains(str, elem, options) {
     return false;
   }
 
+  if (search.length === 0 || options.minOccurrences < 1) {
+    return false;
+  }
+
   if (options.ignoreCase) {
     return str.toLowerCase().split(search.toLowerCase()).length > options.minOccurrences;
   }
