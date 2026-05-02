@@ -22,5 +22,7 @@ export default function isLuhnNumber(str) {
     }
     shouldDouble = !shouldDouble;
   }
-  return !!((sum % 10) === 0 ? sanitized : false);
+  const isValid = sum % 10 === 0;
+  return !!isValid;
 }
+
