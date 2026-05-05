@@ -2,10 +2,16 @@ export default function merge(obj = { }, defaults) {
   if (typeof obj !== 'object' || obj === null) {
     obj = {};
   }
-  for (const key in defaults) {
-    if (typeof obj[key] === 'undefined') {
-      obj[key] = defaults[key];
+  const result = {};
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      result[key] = obj[key];
     }
   }
-  return obj;
+  for (const key in defaults) {
+    if (typeof result[key] === 'undefined') {
+      result[key] = defaults[key];
+    }
+  }
+  return result;
 }
