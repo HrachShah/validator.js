@@ -24,6 +24,6 @@ export default function isJSON(str, options) {
     }
 
     return includes(primitives, obj) || (!!obj && typeof obj === 'object');
-  } catch (e) { /* ignore */ }
+  } catch (e) { if (!(e instanceof SyntaxError)) throw e; }
   return false;
 }
