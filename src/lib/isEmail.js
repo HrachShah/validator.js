@@ -105,6 +105,11 @@ export default function isEmail(str, options) {
     return false;
   }
 
+  /* istanbul ignore if */
+  if (options.require_tld && parts.length < 2) {
+    return false;
+  }
+
   let user = parts.join('@');
 
   if (options.domain_specific_validation && (lower_domain === 'gmail.com' || lower_domain === 'googlemail.com')) {
