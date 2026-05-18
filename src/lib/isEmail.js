@@ -107,7 +107,11 @@ export default function isEmail(str, options) {
 
   let user = parts.join('@');
 
-  if (options.domain_specific_validation && (lower_domain === 'gmail.com' || lower_domain === 'googlemail.com')) {
+  if (
+    options.domain_specific_validation &&
+    options.require_tld &&
+    (lower_domain === 'gmail.com' || lower_domain === 'googlemail.com')
+  ) {
     /*
     Previously we removed dots for gmail addresses before validating.
     This was removed because it allows `multiple..dots@gmail.com`
