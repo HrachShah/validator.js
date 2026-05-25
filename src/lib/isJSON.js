@@ -24,6 +24,8 @@ export default function isJSON(str, options) {
     }
 
     return includes(primitives, obj) || (!!obj && typeof obj === 'object');
-  } catch (e) { /* ignore */ }
+  } catch (e) {
+    // SyntaxError is the only exception JSON.parse can raise
+  }
   return false;
 }
