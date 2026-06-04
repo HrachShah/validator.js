@@ -6,7 +6,7 @@ export default function isLength(str, options) {
   let min;
   let max;
 
-  if (typeof (options) === 'object') {
+  if (options !== null && typeof (options) === 'object') {
     min = options.min || 0;
     max = options.max;
   } else { // backwards compatibility: isLength(str, min [, max])
@@ -19,7 +19,10 @@ export default function isLength(str, options) {
   const len = str.length - presentationSequences.length - surrogatePairs.length;
   const isInsideRange = len >= min && (typeof max === 'undefined' || len <= max);
 
-  if (isInsideRange && Array.isArray(options?.discreteLengths)) {
+  // discreteLengths is only meaningful when the caller passed an options object.
+  // Without this guard, isLength('test', null) would throw a TypeError on
+  // `null.discreteLengths` for any string that fell inside the default range.
+  if (isInsideRange && options !== null && Array.isArray(options?.discreteLengths)) {
     return options.discreteLengths.some(discreteLen => discreteLen === len);
   }
 

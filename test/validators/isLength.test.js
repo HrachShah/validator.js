@@ -1,4 +1,6 @@
+import assert from 'assert';
 import test from '../testFunctions';
+import validator from '../../src/index';
 
 describe('isLength', () => {
   it('should return false for a string with length greater than the max', () => {
@@ -158,6 +160,14 @@ describe('isLength', () => {
       valid: ['🚀', '🍕', 'A'],
       invalid: ['🚀🚀', ''],
     });
+  });
+
+  it('should not throw when called with null options', () => {
+    // Regression: typeof null === 'object' so the options branch tried to
+    // read `options.min` and threw TypeError. With the null guard the
+    // function should fall through to the legacy default range.
+    assert.strictEqual(validator.isLength('test', null), true);
+    assert.strictEqual(validator.isLength('test', null), validator.isLength('test', undefined));
   });
 
   it('should only allow strings with specific lengths from a list', () => {
