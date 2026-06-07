@@ -12223,6 +12223,91 @@ describe('Validators', () => {
     });
   });
 
+  it('should validate Bitcoin mainnet addresses only when network is main', () => {
+    test({
+      validator: 'isBtcAddress',
+      args: ['main'],
+      valid: [
+        '1MUz4VMYui5qY1mxUiG8BQ1Luv6tqkvaiL',
+        '3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy',
+        '17VZNX1SN5NtKa8UQFxwQbFeFc3iqRYhemt',
+        'bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4',
+        'bc1p5d7rjq7g6rdk2yhzks9smlaqtedr4dekq08ge8ztwac72sfr9rusxg3297',
+      ],
+      invalid: [
+        'mucFNhKMYoBQYUAEsrFVscQ1YaFQPekBpg',
+        'tb1qxhkl607frtvjsy9nlyeg03lf6fsq947pl2pe82',
+        'tb1pzpelffrdh9ptpaqnurwx30dlewqv57rcxfeetp86hsssk30p4cws38tr9y',
+        '2NFUBBRcTJbYc1D4HSCbJhKZp6YCV4PQFpQ',
+      ],
+    });
+  });
+
+  it('should validate Bitcoin testnet addresses when network is test', () => {
+    test({
+      validator: 'isBtcAddress',
+      args: ['test'],
+      valid: [
+        'mucFNhKMYoBQYUAEsrFVscQ1YaFQPekBpg',
+        'tb1qxhkl607frtvjsy9nlyeg03lf6fsq947pl2pe82',
+        'tb1pzpelffrdh9ptpaqnurwx30dlewqv57rcxfeetp86hsssk30p4cws38tr9y',
+        '2NFUBBRcTJbYc1D4HSCbJhKZp6YCV4PQFpQ',
+      ],
+      invalid: [
+        '1MUz4VMYui5qY1mxUiG8BQ1Luv6tqkvaiL',
+        '3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy',
+        'bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4',
+        'bc1p5d7rjq7g6rdk2yhzks9smlaqtedr4dekq08ge8ztwac72sfr9rusxg3297',
+      ],
+    });
+  });
+
+  it('should validate Bitcoin addresses for any network when network is any', () => {
+    test({
+      validator: 'isBtcAddress',
+      args: ['any'],
+      valid: [
+        '1MUz4VMYui5qY1mxUiG8BQ1Luv6tqkvaiL',
+        'mucFNhKMYoBQYUAEsrFVscQ1YaFQPekBpg',
+        '3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy',
+        'bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4',
+        'tb1qxhkl607frtvjsy9nlyeg03lf6fsq947pl2pe82',
+        'bc1p5d7rjq7g6rdk2yhzks9smlaqtedr4dekq08ge8ztwac72sfr9rusxg3297',
+      ],
+      invalid: [
+        'notanaddress',
+        '0x56F0B8A998425c53c75C4A303D4eF987533c5597',
+        '4J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy',
+      ],
+    });
+  });
+
+  it('should accept regtest as an alias for test', () => {
+    test({
+      validator: 'isBtcAddress',
+      args: ['regtest'],
+      valid: [
+        'mucFNhKMYoBQYUAEsrFVscQ1YaFQPekBpg',
+        'tb1qxhkl607frtvjsy9nlyeg03lf6fsq947pl2pe82',
+      ],
+      invalid: [
+        '1MUz4VMYui5qY1mxUiG8BQ1Luv6tqkvaiL',
+      ],
+    });
+  });
+
+  it('should throw for unknown network values', () => {
+    test({
+      validator: 'isBtcAddress',
+      args: ['foo'],
+      error: [
+        '1MUz4VMYui5qY1mxUiG8BQ1Luv6tqkvaiL',
+        'mucFNhKMYoBQYUAEsrFVscQ1YaFQPekBpg',
+        'bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4',
+      ],
+    });
+  });
+
   it('should validate booleans', () => {
     test({
       validator: 'isBoolean',
