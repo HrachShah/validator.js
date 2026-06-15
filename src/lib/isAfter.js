@@ -3,7 +3,9 @@ import toDate from './toDate';
 export default function isAfter(date, options) {
   // For backwards compatibility:
   // isAfter(str [, date]), i.e. `options` could be used as argument for the legacy `date`
-  const comparisonDate = (typeof options === 'object' ? options.comparisonDate : options) || Date().toString();
+  // Use optional chaining so passing `null` (typeof null === 'object') doesn't crash with
+  // "Cannot read properties of null"; null and undefined both fall through to the Date() default.
+  const comparisonDate = (options && typeof options === 'object' ? options.comparisonDate : options) || Date().toString();
 
   const comparison = toDate(comparisonDate);
   const original = toDate(date);

@@ -42,6 +42,17 @@ describe('isAfter', () => {
       args: [{ comparisonDate: undefined }], // will fall back to the current date
       valid: ['2100-08-04', new Date(Date.now() + 86400000).toString()],
     });
+
+    test({
+      // Regression: passing `null` as options used to crash with
+      // "Cannot read properties of null (reading 'comparisonDate')" because
+      // `typeof null === 'object'`. null should fall through to the current
+      // date the same way undefined does.
+      validator: 'isAfter',
+      args: [null],
+      valid: ['2100-08-04', new Date(Date.now() + 86400000).toString()],
+      invalid: ['2010-07-02', 'foo'],
+    });
   });
 
   describe('(legacy syntax)', () => {

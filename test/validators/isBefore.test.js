@@ -87,6 +87,16 @@ describe('isBefore', () => {
         args: [{ comparisonDate: undefined }], // will fall back to the current date
         valid: ['1999-06-07'],
       });
+      test({
+        // Regression: passing `null` as options used to crash with
+        // "Cannot read properties of null (reading 'comparisonDate')" because
+        // `typeof null === 'object'`. null should fall through to the current
+        // date the same way undefined does.
+        validator: 'isBefore',
+        args: [null],
+        valid: ['1999-06-07'],
+        invalid: ['2100-07-02', 'foo'],
+      });
     });
 
     describe('legacy syntax', () => {
