@@ -281,6 +281,16 @@ describe('Validators', () => {
   });
 
 
+  it('should not validate email addresses with a lone double quote in the local part', () => {
+    test({
+      validator: 'isEmail',
+      valid: [],
+      invalid: [
+        '"@example.com',
+      ],
+    });
+  });
+
   it('should validate really long emails if ignore_max_length is set', () => {
     test({
       validator: 'isEmail',
