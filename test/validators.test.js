@@ -5391,6 +5391,10 @@ describe('Validators', () => {
     });
   });
 
+  it('should return false for an unsupported hash algorithm', () => {
+    assert.strictEqual(validator.isHash('d94f3f016ae679c3008de268209132f2', 'sha999'), false);
+  });
+
   it('should validate hash strings', () => {
     ['md5', 'md4', 'ripemd128', 'tiger128'].forEach((algorithm) => {
       test({
