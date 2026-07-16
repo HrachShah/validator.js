@@ -3,6 +3,7 @@ import assertString from './util/assertString';
 export default function isLuhnNumber(str) {
   assertString(str);
   const sanitized = str.replace(/[- ]+/g, '');
+  if (!sanitized) return false;
   let sum = 0;
   let digit;
   let tmpNum;
