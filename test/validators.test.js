@@ -6149,6 +6149,11 @@ describe('Validators', () => {
       invalid: ['4'],
     });
     test({ validator: 'isIn', invalid: ['foo', ''] });
+    test({
+      validator: 'isIn',
+      args: [Object.create(null)],
+      invalid: ['toString', ''],
+    });
   });
 
   it('should validate a string that is in another object', () => {
