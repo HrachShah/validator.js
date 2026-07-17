@@ -6432,6 +6432,13 @@ describe('Validators', () => {
     });
   });
 
+  it('rejects inherited credit card provider names', () => {
+    assert.throws(
+      () => validator.isCreditCard('375556917985515', { provider: '__proto__' }),
+      /__proto__ is not a valid credit card provider/
+    );
+  });
+
 
   it('should validate AmEx provided credit cards', () => {
     test({
