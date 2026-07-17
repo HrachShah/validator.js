@@ -4435,6 +4435,10 @@ describe('Validators', () => {
   });
 
   it('should validate integers', () => {
+    const options = Object.create(null);
+    options.min = 10;
+    assert.strictEqual(validator.isInt('10', options), true);
+    assert.strictEqual(validator.isInt('9', options), false);
     test({
       validator: 'isInt',
       valid: [
@@ -4631,6 +4635,10 @@ describe('Validators', () => {
   });
 
   it('should validate floats', () => {
+    const options = Object.create(null);
+    options.min = 1.5;
+    assert.strictEqual(validator.isFloat('1.5', options), true);
+    assert.strictEqual(validator.isFloat('1.4', options), false);
     test({
       validator: 'isFloat',
       valid: [
