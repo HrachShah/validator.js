@@ -4628,6 +4628,12 @@ describe('Validators', () => {
         '111987234i',
       ],
     });
+    test({
+      validator: 'isInt',
+      args: [Object.create(null)],
+      valid: ['1'],
+      invalid: ['1.2'],
+    });
   });
 
   it('should validate floats', () => {
