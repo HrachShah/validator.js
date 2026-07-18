@@ -161,6 +161,8 @@ describe('isBase64', () => {
         'SGVsbG8@',
         'SGVsb G8',
         '====',
+        'A',
+        'AAAAA',
       ],
     });
   });
