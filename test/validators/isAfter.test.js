@@ -39,6 +39,12 @@ describe('isAfter', () => {
     });
     test({
       validator: 'isAfter',
+      args: [null], // will fall back to the current date
+      valid: ['2100-08-04'],
+      invalid: ['1999-06-07'],
+    });
+    test({
+      validator: 'isAfter',
       args: [{ comparisonDate: undefined }], // will fall back to the current date
       valid: ['2100-08-04', new Date(Date.now() + 86400000).toString()],
     });

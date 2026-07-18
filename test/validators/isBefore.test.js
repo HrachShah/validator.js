@@ -84,6 +84,12 @@ describe('isBefore', () => {
       });
       test({
         validator: 'isBefore',
+        args: [null], // will fall back to the current date
+        valid: ['1999-06-07'],
+        invalid: ['2100-08-04'],
+      });
+      test({
+        validator: 'isBefore',
         args: [{ comparisonDate: undefined }], // will fall back to the current date
         valid: ['1999-06-07'],
       });
