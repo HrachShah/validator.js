@@ -1,6 +1,15 @@
 import test from '../testFunctions';
 
 describe('isLength', () => {
+  it('should support null options through the legacy argument path', () => {
+    test({
+      validator: 'isLength',
+      args: [null, 2],
+      valid: ['', 'ab'],
+      invalid: ['abc'],
+    });
+  });
+
   it('should return false for a string with length greater than the max', () => {
     test({
       validator: 'isLength',
