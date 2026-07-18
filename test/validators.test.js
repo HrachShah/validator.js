@@ -5763,6 +5763,11 @@ describe('Validators', () => {
       valid: [''],
       invalid: ['ｇ', 'a'],
     });
+    test({
+      validator: 'isByteLength',
+      args: [null],
+      valid: ['', 'a'],
+    });
   });
 
   it('should validate ULIDs', () => {
