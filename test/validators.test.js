@@ -4686,6 +4686,12 @@ describe('Validators', () => {
         'foo',
       ],
     });
+    test({
+      validator: 'isFloat',
+      args: [Object.create(null)],
+      valid: ['123', '-0.5'],
+      invalid: ['foo', '1,2'],
+    });
 
     test({
       validator: 'isFloat',

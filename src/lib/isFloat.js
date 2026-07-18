@@ -10,11 +10,12 @@ export default function isFloat(str, options) {
     return false;
   }
   const value = parseFloat(str.replace(',', '.'));
+  const hasOwn = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
   return float.test(str) &&
-    (!options.hasOwnProperty('min') || isNullOrUndefined(options.min) || value >= options.min) &&
-    (!options.hasOwnProperty('max') || isNullOrUndefined(options.max) || value <= options.max) &&
-    (!options.hasOwnProperty('lt') || isNullOrUndefined(options.lt) || value < options.lt) &&
-    (!options.hasOwnProperty('gt') || isNullOrUndefined(options.gt) || value > options.gt);
+    (!hasOwn(options, 'min') || isNullOrUndefined(options.min) || value >= options.min) &&
+    (!hasOwn(options, 'max') || isNullOrUndefined(options.max) || value <= options.max) &&
+    (!hasOwn(options, 'lt') || isNullOrUndefined(options.lt) || value < options.lt) &&
+    (!hasOwn(options, 'gt') || isNullOrUndefined(options.gt) || value > options.gt);
 }
 
 export const locales = Object.keys(decimal);
