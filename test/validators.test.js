@@ -4437,6 +4437,12 @@ describe('Validators', () => {
   it('should validate integers', () => {
     test({
       validator: 'isInt',
+      args: [Object.create(null)],
+      valid: ['13'],
+      invalid: ['13.5'],
+    });
+    test({
+      validator: 'isInt',
       valid: [
         '13',
         '123',
@@ -4631,6 +4637,12 @@ describe('Validators', () => {
   });
 
   it('should validate floats', () => {
+    test({
+      validator: 'isFloat',
+      args: [Object.create(null)],
+      valid: ['13.5'],
+      invalid: ['13.5.1'],
+    });
     test({
       validator: 'isFloat',
       valid: [
