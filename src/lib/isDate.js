@@ -27,6 +27,7 @@ export default function isDate(input, options) {
   } else {
     options = merge(options, default_date_options);
   }
+  options = { ...options };
   if (typeof input === 'string' && isValidFormat(options.format)) {
     if (options.strictMode && input.length !== options.format.length) return false;
     if (!Array.isArray(options.delimiters) || options.delimiters.length === 0) {

@@ -14354,6 +14354,12 @@ describe('Validators', () => {
     });
     test({
       validator: 'isDate',
+      args: [Object.assign(Object.create(null), { format: 'YYYY/MM/DD' })],
+      valid: ['2020/02/29'],
+      invalid: ['2020/02/30'],
+    });
+    test({
+      validator: 'isDate',
       args: ['DD/MM/YYYY'], // old format for backward compatibility
       valid: [
         '15-07-2002',
