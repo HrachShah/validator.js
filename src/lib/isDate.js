@@ -29,11 +29,20 @@ export default function isDate(input, options) {
   }
   if (typeof input === 'string' && isValidFormat(options.format)) {
     if (options.strictMode && input.length !== options.format.length) return false;
+    if (!Array.isArray(options.delimiters) || options.delimiters.length === 0) {
+      return false;
+    }
     const formatDelimiter = options.delimiters
       .find(delimiter => options.format.indexOf(delimiter) !== -1);
+    if (formatDelimiter === undefined) {
+      return false;
+    }
     const dateDelimiter = options.strictMode
       ? formatDelimiter
       : options.delimiters.find(delimiter => input.indexOf(delimiter) !== -1);
+    if (dateDelimiter === undefined) {
+      return false;
+    }
     const dateAndFormat = zip(
       input.split(dateDelimiter),
       options.format.toLowerCase().split(formatDelimiter)

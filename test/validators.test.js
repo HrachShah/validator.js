@@ -14302,6 +14302,12 @@ describe('Validators', () => {
     });
   });
 
+  it('should reject date options without a usable delimiter', () => {
+    assert.strictEqual(validator.isDate('2020/01/01', { delimiters: [] }), false);
+    assert.strictEqual(validator.isDate('2020/01/01', { delimiters: null }), false);
+    assert.strictEqual(validator.isDate('2020/01/01', { delimiters: ['-'] }), false);
+  });
+
   it('should validate date', () => {
     test({
       validator: 'isDate',
