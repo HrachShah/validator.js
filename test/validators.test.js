@@ -14522,6 +14522,13 @@ describe('Validators', () => {
     });
     test({
       validator: 'isDate',
+      args: [{ format: 'YYYY.MM.DD' }],
+      invalid: [
+        '2020/02/29',
+      ],
+    });
+    test({
+      validator: 'isDate',
       args: [{ format: 'MM.DD.YYYY', delimiters: ['.'], strictMode: true }],
       valid: [
         '01.15.2020',

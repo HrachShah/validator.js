@@ -34,6 +34,7 @@ export default function isDate(input, options) {
     const dateDelimiter = options.strictMode
       ? formatDelimiter
       : options.delimiters.find(delimiter => input.indexOf(delimiter) !== -1);
+    if (!formatDelimiter || !dateDelimiter) return false;
     const dateAndFormat = zip(
       input.split(dateDelimiter),
       options.format.toLowerCase().split(formatDelimiter)
