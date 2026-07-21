@@ -12,7 +12,7 @@ export default function isBase64(str, options) {
 
   if (str === '') return true;
 
-  if (options.padding && str.length % 4 !== 0) return false;
+  if (str.length % 4 === 1 || (options.padding && str.length % 4 !== 0)) return false;
 
   let regex;
   if (options.urlSafe) {

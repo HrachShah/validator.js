@@ -27,6 +27,7 @@ describe('isBase64', () => {
       ],
       invalid: [
         '12345',
+        'A',
         'Vml2YW11cyBmZXJtZtesting123',
         'Zg=',
         'Z===',
@@ -89,6 +90,7 @@ describe('isBase64', () => {
       ],
       invalid: [
         'TWF',
+        'A',
         'TWE===',
         'SGVsbG8@',
         'SGVsbG8===',
@@ -135,6 +137,7 @@ describe('isBase64', () => {
         'SGVsbG8_',
       ],
       invalid: [
+        'A',
         'SGVsbG8===',
         'SGVsbG8@',
         'SGVsb G8=',
@@ -157,6 +160,7 @@ describe('isBase64', () => {
       ],
       invalid: [
         'SGVsbG8=',
+        'A',
         'SGVsbG8===',
         'SGVsbG8@',
         'SGVsb G8',
