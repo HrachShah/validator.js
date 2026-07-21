@@ -5551,8 +5551,6 @@ describe('Validators', () => {
         'ks64$S/9.dy$§kz.3sd73b',
         '.eyJzdWIiOiIxMjM0NSJ9.signature',
         'header..signature',
-        '.eyJzdWIiOiIxMjM0NSJ9.signature',
-        'header..signature',
       ],
       error: [
         [],
