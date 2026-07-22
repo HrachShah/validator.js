@@ -16104,6 +16104,7 @@ describe('Validators', () => {
         'mailto:?cc=valid@mail.com,another@mail.com',
         'mailto:?cc=valid@mail.com',
         'mailto:?bcc=valid@mail.com',
+        'mailto:?cc="a=b"@example.com',
         'mailto:?subject=something&body=something else',
         'mailto:?subject=something&body=something else&cc=hello@mail.com,another@mail.com',
         'mailto:?subject=something&body=something else&bcc=hello@mail.com,another@mail.com',
