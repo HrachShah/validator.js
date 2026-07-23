@@ -14612,6 +14612,10 @@ describe('Validators', () => {
     });
     timezone_mock.unregister();
   });
+  it('should reject unsupported time format options', () => {
+    assert.strictEqual(validator.isTime('12:00', { hourFormat: 'hour13' }), false);
+    assert.strictEqual(validator.isTime('12:00', { mode: 'unknown' }), false);
+  });
   it('should validate time', () => {
     test({
       validator: 'isTime',
