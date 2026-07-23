@@ -91,6 +91,7 @@ describe('isBase64', () => {
       invalid: [
         'TWF',
         'A',
+        'Zh==',
         'TWE===',
         'SGVsbG8@',
         'SGVsbG8===',
@@ -115,6 +116,7 @@ describe('isBase64', () => {
       ],
       invalid: [
         'TWE=',
+        'Zh',
         'TQ===',
         'SGVsbG8@',
         'SGVsbG8===',
