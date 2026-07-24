@@ -13,7 +13,7 @@ function parseMailtoQueryString(queryString) {
     return false;
   }
 
-  for (const q of queryParams) {
+  for (const [index, q] of queryParams.entries()) {
     const [key, value] = q.split(/=(.*)/s);
 
     // checked for invalid and duplicated query params
@@ -24,6 +24,11 @@ function parseMailtoQueryString(queryString) {
 
     if (value && (key === 'cc' || key === 'bcc')) {
       query[key] = value;
+    }
+
+    if (!key && index !== queryParams.length - 1) {
+      isParseFailed = true;
+      break;
     }
 
     if (key) {
