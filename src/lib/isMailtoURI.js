@@ -19,6 +19,11 @@ function parseMailtoQueryString(queryString) {
     const value = separator === -1 ? undefined : q.slice(separator + 1);
 
     // checked for invalid and duplicated query params
+    if (!key && q) {
+      isParseFailed = true;
+      break;
+    }
+
     if (key && !allowedParams.has(key)) {
       isParseFailed = true;
       break;
