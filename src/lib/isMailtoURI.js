@@ -43,7 +43,10 @@ export default function isMailtoURI(url, options) {
     return false;
   }
 
-  const [to, queryString = ''] = url.replace('mailto:', '').split('?');
+  const address = url.slice('mailto:'.length);
+  const separator = address.indexOf('?');
+  const to = separator === -1 ? address : address.slice(0, separator);
+  const queryString = separator === -1 ? '' : address.slice(separator + 1);
 
   if (!to && !queryString) {
     return true;
