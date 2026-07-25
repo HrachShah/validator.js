@@ -19,7 +19,7 @@ const formats = {
 };
 
 export default function isTime(input, options) {
-  options = merge(options, default_time_options);
+  options = merge({ ...options }, default_time_options);
   if (typeof input !== 'string') return false;
   const hourFormat = formats[options.hourFormat];
   if (!hourFormat || !hourFormat[options.mode]) return false;
