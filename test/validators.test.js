@@ -6148,6 +6148,12 @@ describe('Validators', () => {
       valid: ['1', '2', '3'],
       invalid: ['4', ''],
     });
+    test({
+      validator: 'isIn',
+      args: [Object.assign(Object.create(null), { foo: 1 })],
+      valid: ['foo'],
+      invalid: ['toString', ''],
+    });
   });
 
   it('should validate ABA routing number', () => {
