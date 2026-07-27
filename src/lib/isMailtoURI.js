@@ -12,8 +12,13 @@ function parseMailtoQueryString(queryString) {
   const hasEmptyParameter = queryParams.some((param, index) => (
     !param && index !== queryParams.length - 1
   ));
+  const hasTrailingParameterSeparator = (
+    queryParams.length > 1 && !queryParams[queryParams.length - 1]
+  );
 
-  if (queryParams.length > 4 || (queryString && hasEmptyParameter)) {
+  if (queryParams.length > 4 || (
+    queryString && (hasEmptyParameter || hasTrailingParameterSeparator)
+  )) {
     return false;
   }
 
