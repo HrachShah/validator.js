@@ -9,7 +9,11 @@ function parseMailtoQueryString(queryString) {
 
   const queryParams = queryString.split('&');
 
-  if (queryParams.length > 4) {
+  const hasEmptyParameter = queryParams.some((param, index) => (
+    !param && index !== queryParams.length - 1
+  ));
+
+  if (queryParams.length > 4 || (queryString && hasEmptyParameter)) {
     return false;
   }
 
