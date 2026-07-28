@@ -6148,6 +6148,18 @@ describe('Validators', () => {
       valid: ['1', '2', '3'],
       invalid: ['4', ''],
     });
+    test({
+      validator: 'isIn',
+      args: [{ 1: 3, 2: 0, 3: 1 }],
+      valid: ['1', '2', '3'],
+      invalid: ['4', ''],
+    });
+    test({
+      validator: 'isIn',
+      args: [Object.create({ inherited: true })],
+      valid: [],
+      invalid: ['inherited'],
+    });
   });
 
   it('should validate ABA routing number', () => {
