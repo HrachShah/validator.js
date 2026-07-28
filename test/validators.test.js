@@ -6148,6 +6148,18 @@ describe('Validators', () => {
       valid: ['1', '2', '3'],
       invalid: ['4', ''],
     });
+    test({
+      validator: 'isIn',
+      args: [{ 1: 3, 2: 0, 3: 1 }],
+      valid: ['1', '2', '3'],
+      invalid: ['4', ''],
+    });
+    test({
+      validator: 'isIn',
+      args: [Object.create({ inherited: true })],
+      valid: [],
+      invalid: ['inherited'],
+    });
   });
 
   it('should validate ABA routing number', () => {
@@ -14299,6 +14311,7 @@ describe('Validators', () => {
         new Date('2014-03-15'),
         '2020/02/29',
         '2020-02-19',
+        '2024/02/29',
       ],
       invalid: [
         '',
@@ -14312,6 +14325,7 @@ describe('Validators', () => {
         '2019-02-29', // non-leap year
         '2020-04-31', // invalid date
         '2020/03-15', // mixed delimiter
+        '2024/02/30', // invalid day must not roll into March
         '-2020-04-19',
         '-2023/05/24',
         'abc-2023/05/24',

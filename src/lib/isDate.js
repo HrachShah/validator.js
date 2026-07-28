@@ -83,7 +83,10 @@ export default function isDate(input, options) {
       day = `0${dateObj.d}`;
     }
 
-    return new Date(`${fullYear}-${month}-${day}T00:00:00.000Z`).getUTCDate() === +dateObj.d;
+    const date = new Date(`${fullYear}-${month}-${day}T00:00:00.000Z`);
+    return date.getUTCFullYear() === +fullYear
+      && date.getUTCMonth() + 1 === +dateObj.m
+      && date.getUTCDate() === +dateObj.d;
   }
 
   if (!options.strictMode) {
