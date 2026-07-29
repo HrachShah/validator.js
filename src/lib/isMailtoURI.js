@@ -13,8 +13,13 @@ function parseMailtoQueryString(queryString) {
     return false;
   }
 
-  for (const q of queryParams) {
+  for (let i = 0; i < queryParams.length; i += 1) {
+    const q = queryParams[i];
     const [key, ...valueParts] = q.split('=');
+    if (!q && i !== queryParams.length - 1) {
+      isParseFailed = true;
+      break;
+    }
     const value = valueParts.join('=');
 
     // checked for invalid and duplicated query params
