@@ -7462,6 +7462,8 @@ describe('Validators', () => {
         'JBSWY3DPtesting123',
         'ZG=====',
         'Z======',
+        'Z=======',
+        'JBSW=====',
         'Zm=8JBSWY3DP',
         '=m9vYg==',
         'Zm9vYm/y====',

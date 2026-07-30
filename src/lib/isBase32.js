@@ -16,5 +16,12 @@ export default function isBase32(str, options) {
     return crockfordBase32.test(str);
   }
 
-  return str.length % 8 === 0 && base32.test(str);
+  if (str.length === 0 || str.length % 8 !== 0 || !base32.test(str)) return false;
+
+  const padding = str.indexOf('=');
+  if (padding === -1) return true;
+
+  const paddingLength = str.length - padding;
+  return [2, 4, 5, 7].includes(padding % 8) &&
+    [1, 3, 4, 6].includes(paddingLength);
 }
