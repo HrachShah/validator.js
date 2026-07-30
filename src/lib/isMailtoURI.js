@@ -37,11 +37,11 @@ function parseMailtoQueryString(queryString) {
 export default function isMailtoURI(url, options) {
   assertString(url);
 
-  if (url.indexOf('mailto:') !== 0) {
+  if (url.slice(0, 'mailto:'.length).toLowerCase() !== 'mailto:') {
     return false;
   }
 
-  const [to, queryString = ''] = url.replace('mailto:', '').split('?');
+  const [to, queryString = ''] = url.slice('mailto:'.length).split('?');
 
   if (!to && !queryString) {
     return true;
