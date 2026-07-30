@@ -4567,6 +4567,17 @@ describe('Validators', () => {
     });
     test({
       validator: 'isInt',
+      args: [Object.assign(Object.create(null), { min: 10 })],
+      valid: [
+        '10',
+        '15',
+      ],
+      invalid: [
+        '9',
+      ],
+    });
+    test({
+      validator: 'isInt',
       args: [{
         min: undefined,
         max: undefined,
@@ -4864,6 +4875,17 @@ describe('Validators', () => {
         '',
         '.',
         'foo',
+      ],
+    });
+    test({
+      validator: 'isFloat',
+      args: [Object.assign(Object.create(null), { min: 1.5 })],
+      valid: [
+        '1.5',
+        '2.0',
+      ],
+      invalid: [
+        '1.4',
       ],
     });
     test({
