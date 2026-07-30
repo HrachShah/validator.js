@@ -8,6 +8,15 @@ import test from './testFunctions';
 let validator_js = fs.readFileSync(require.resolve('../validator.js')).toString();
 
 describe('Validators', () => {
+  it('should accept null-prototype numeric options', () => {
+    const options = Object.assign(Object.create(null), { min: 2, max: 4 });
+
+    assert.strictEqual(validator.isInt('3', options), true);
+    assert.strictEqual(validator.isInt('1', options), false);
+    assert.strictEqual(validator.isFloat('3.5', options), true);
+    assert.strictEqual(validator.isFloat('4.5', options), false);
+  });
+
   it('should validate email addresses', () => {
     test({
       validator: 'isEmail',
