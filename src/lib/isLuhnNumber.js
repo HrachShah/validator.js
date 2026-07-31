@@ -22,5 +22,5 @@ export default function isLuhnNumber(str) {
     }
     shouldDouble = !shouldDouble;
   }
-  return !!((sum % 10) === 0 ? sanitized : false);
+  return (sum % 10) === 0;
 }

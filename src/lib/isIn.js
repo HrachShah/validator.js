@@ -3,10 +3,9 @@ import toString from './util/toString';
 
 export default function isIn(str, options) {
   assertString(str);
-  let i;
   if (Object.prototype.toString.call(options) === '[object Array]') {
     const array = [];
-    for (i in options) {
+    for (const i in options) {
       // https://github.com/gotwarlost/istanbul/blob/master/ignoring-code-for-coverage.md#ignoring-code-for-coverage-purposes
       // istanbul ignore else
       if ({}.hasOwnProperty.call(options, i)) {

@@ -2,6 +2,7 @@ import toDate from './lib/toDate';
 import toFloat from './lib/toFloat';
 import toInt from './lib/toInt';
 import toBoolean from './lib/toBoolean';
+import toString from './lib/util/toString';
 import equals from './lib/equals';
 import contains from './lib/contains';
 import matches from './lib/matches';
