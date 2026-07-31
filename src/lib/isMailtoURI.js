@@ -38,6 +38,11 @@ function parseMailtoQueryString(queryString) {
       break;
     }
 
+    if (key && separator === -1) {
+      isParseFailed = true;
+      break;
+    }
+
     if (value && (key === 'cc' || key === 'bcc')) {
       query[key] = value;
     }
