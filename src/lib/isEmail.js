@@ -166,7 +166,7 @@ export default function isEmail(str, options) {
     if (user.search(new RegExp(`[${options.blacklisted_chars}]+`, 'g')) !== -1) return false;
   }
 
-  if (user[0] === '"' && user[user.length - 1] === '"') {
+  if (user.length > 1 && user[0] === '"' && user[user.length - 1] === '"') {
     user = user.slice(1, user.length - 1);
     return options.allow_utf8_local_part ?
       quotedEmailUserUtf8.test(user) :
