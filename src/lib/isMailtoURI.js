@@ -14,19 +14,26 @@ function parseMailtoQueryString(queryString) {
   }
 
   for (const q of queryParams) {
-    const [key, value] = q.split('=');
+    if (q) {
+      const separator = q.indexOf('=');
+      if (separator === -1) {
+        isParseFailed = true;
+        break;
+      }
 
-    // checked for invalid and duplicated query params
-    if (key && !allowedParams.has(key)) {
-      isParseFailed = true;
-      break;
-    }
+      const key = q.slice(0, separator);
+      const value = q.slice(separator + 1);
 
-    if (value && (key === 'cc' || key === 'bcc')) {
-      query[key] = value;
-    }
+      // checked for invalid and duplicated query params
+      if (!key || !allowedParams.has(key)) {
+        isParseFailed = true;
+        break;
+      }
 
-    if (key) {
+      if (value && (key === 'cc' || key === 'bcc')) {
+        query[key] = value;
+      }
+
       allowedParams.delete(key);
     }
   }
