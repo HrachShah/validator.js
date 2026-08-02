@@ -24,6 +24,11 @@ function parseMailtoQueryString(queryString) {
       const key = q.slice(0, separator);
       const value = q.slice(separator + 1);
 
+      if (value.includes('\u0000')) {
+        isParseFailed = true;
+        break;
+      }
+
       // checked for invalid and duplicated query params
       if (!key || !allowedParams.has(key)) {
         isParseFailed = true;
