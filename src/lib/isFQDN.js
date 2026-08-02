@@ -27,6 +27,10 @@ export default function isFQDN(str, options) {
   const parts = str.split('.');
   const tld = parts[parts.length - 1];
 
+  if (str.length > 253 && !options.ignore_max_length) {
+    return false;
+  }
+
   if (options.require_tld) {
     // disallow fqdns without tld
     if (parts.length < 2) {
