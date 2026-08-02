@@ -14,19 +14,31 @@ function parseMailtoQueryString(queryString) {
   }
 
   for (const q of queryParams) {
-    const [key, value] = q.split('=');
+    if (q) {
+      const separator = q.indexOf('=');
+      if (separator === -1) {
+        isParseFailed = true;
+        break;
+      }
 
-    // checked for invalid and duplicated query params
-    if (key && !allowedParams.has(key)) {
-      isParseFailed = true;
-      break;
-    }
+      const key = q.slice(0, separator);
+      const value = q.slice(separator + 1);
 
-    if (value && (key === 'cc' || key === 'bcc')) {
-      query[key] = value;
-    }
+      if (value.includes('\u0000')) {
+        isParseFailed = true;
+        break;
+      }
 
-    if (key) {
+      // checked for invalid and duplicated query params
+      if (!key || !allowedParams.has(key)) {
+        isParseFailed = true;
+        break;
+      }
+
+      if (value && (key === 'cc' || key === 'bcc')) {
+        query[key] = value;
+      }
+
       allowedParams.delete(key);
     }
   }
@@ -37,11 +49,11 @@ function parseMailtoQueryString(queryString) {
 export default function isMailtoURI(url, options) {
   assertString(url);
 
-  if (url.indexOf('mailto:') !== 0) {
+  if (url.slice(0, 'mailto:'.length).toLowerCase() !== 'mailto:') {
     return false;
   }
 
-  const [to, queryString = ''] = url.replace('mailto:', '').split('?');
+  const [to, queryString = ''] = url.slice('mailto:'.length).split('?');
 
   if (!to && !queryString) {
     return true;
