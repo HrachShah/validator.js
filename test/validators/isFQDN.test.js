@@ -10,6 +10,7 @@ describe('isFQDN', () => {
       ],
       invalid: [
         'google.l33t',
+        `${'a'.repeat(63)}.${'b'.repeat(63)}.${'c'.repeat(63)}.${'d'.repeat(61)}.com`,
       ],
     });
     test({
