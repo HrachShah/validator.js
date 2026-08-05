@@ -5630,6 +5630,28 @@ describe('Validators', () => {
       valid: ['foofoofoo', '12foo124foo', 'fofooofoooofoooo', 'foo1foo'],
       invalid: ['foo', 'foobar', 'Fooofoo', 'foofo'],
     });
+
+    test({
+      validator: 'contains',
+      args: ['foo', {
+        minOccurrences: 0,
+      }],
+      invalid: ['foo', 'bar'],
+    });
+
+    test({
+      validator: 'contains',
+      args: ['foo', {
+        minOccurrences: 1.5,
+      }],
+      invalid: ['foofoo'],
+    });
+
+    test({
+      validator: 'contains',
+      args: [''],
+      invalid: ['foo'],
+    });
   });
 
   it('should validate strings against a pattern', () => {
