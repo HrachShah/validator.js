@@ -7,7 +7,7 @@ export default function isJWT(str) {
   const dotSplit = str.split('.');
   const len = dotSplit.length;
 
-  if (len !== 3) {
+  if (len !== 3 || dotSplit[0] === '' || dotSplit[1] === '') {
     return false;
   }
 

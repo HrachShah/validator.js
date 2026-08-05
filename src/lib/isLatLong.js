@@ -18,6 +18,7 @@ export default function isLatLong(str, options) {
 
   if (!includes(str, ',')) return false;
   const pair = str.split(',');
+  if (pair.length !== 2) return false;
   if ((pair[0].startsWith('(') && !pair[1].endsWith(')'))
     || (pair[1].endsWith(')') && !pair[0].startsWith('('))) return false;
 
