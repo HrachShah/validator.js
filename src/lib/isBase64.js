@@ -14,6 +14,8 @@ export default function isBase64(str, options) {
 
   if (options.padding && str.length % 4 !== 0) return false;
 
+  if (!options.padding && str.length % 4 === 1) return false;
+
   let regex;
   if (options.urlSafe) {
     regex = options.padding ? base64UrlWithPadding : base64UrlWithoutPadding;
