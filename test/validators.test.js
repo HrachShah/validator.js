@@ -4502,6 +4502,22 @@ describe('Validators', () => {
     test({
       validator: 'isInt',
       args: [{
+        min: '10',
+        max: '20',
+      }],
+      valid: [
+        '10',
+        '19',
+        '20',
+      ],
+      invalid: [
+        '2',
+        '21',
+      ],
+    });
+    test({
+      validator: 'isInt',
+      args: [{
         min: 10,
       }],
       valid: [

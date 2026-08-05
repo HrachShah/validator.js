@@ -12,11 +12,13 @@ export default function isInt(str, options) {
   // leading zeroes are allowed or not.
   const regex = options.allow_leading_zeroes === false ? int : intLeadingZeroes;
 
+  const number = Number(str);
+
   // Check min/max/lt/gt
-  let minCheckPassed = (!options.hasOwnProperty('min') || isNullOrUndefined(options.min) || str >= options.min);
-  let maxCheckPassed = (!options.hasOwnProperty('max') || isNullOrUndefined(options.max) || str <= options.max);
-  let ltCheckPassed = (!options.hasOwnProperty('lt') || isNullOrUndefined(options.lt) || str < options.lt);
-  let gtCheckPassed = (!options.hasOwnProperty('gt') || isNullOrUndefined(options.gt) || str > options.gt);
+  let minCheckPassed = (!options.hasOwnProperty('min') || isNullOrUndefined(options.min) || number >= options.min);
+  let maxCheckPassed = (!options.hasOwnProperty('max') || isNullOrUndefined(options.max) || number <= options.max);
+  let ltCheckPassed = (!options.hasOwnProperty('lt') || isNullOrUndefined(options.lt) || number < options.lt);
+  let gtCheckPassed = (!options.hasOwnProperty('gt') || isNullOrUndefined(options.gt) || number > options.gt);
 
   return regex.test(str) && minCheckPassed && maxCheckPassed && ltCheckPassed && gtCheckPassed;
 }
