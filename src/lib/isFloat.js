@@ -10,6 +10,9 @@ export default function isFloat(str, options) {
     return false;
   }
   const value = parseFloat(str.replace(',', '.'));
+  if (value === Infinity || value === -Infinity) {
+    return false;
+  }
   return float.test(str) &&
     (!Object.prototype.hasOwnProperty.call(options, 'min') || isNullOrUndefined(options.min) || value >= options.min) &&
     (!Object.prototype.hasOwnProperty.call(options, 'max') || isNullOrUndefined(options.max) || value <= options.max) &&

@@ -4433,6 +4433,11 @@ describe('Validators', () => {
   });
 
 
+  it('should reject numeric overflow in float validation', () => {
+    assert.strictEqual(validator.isFloat('1e309'), false);
+    assert.strictEqual(validator.isFloat('-1e309'), false);
+  });
+
   it('should validate uppercase strings', () => {
     test({
       validator: 'isUppercase',
