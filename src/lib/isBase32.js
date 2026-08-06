@@ -22,6 +22,8 @@ export default function isBase32(str, options) {
   if (padding === -1) return true;
 
   const paddingLength = str.length - padding;
-  return [2, 4, 5, 7].includes(padding % 8) &&
-    [1, 3, 4, 6].includes(paddingLength);
+  const dataLength = padding % 8;
+  return [2, 4, 5, 7].includes(dataLength) &&
+    [1, 3, 4, 6].includes(paddingLength) &&
+    !str.slice(0, padding).includes('=');
 }
