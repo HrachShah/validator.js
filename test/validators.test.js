@@ -4844,6 +4844,22 @@ describe('Validators', () => {
     test({
       validator: 'isFloat',
       args: [{
+        locale: 'ar-JO',
+        min: 3.7,
+        max: 4.2,
+      }],
+      valid: [
+        '3٫7',
+        '4٫2',
+      ],
+      invalid: [
+        '3٫69',
+        '4٫21',
+      ],
+    });
+    test({
+      validator: 'isFloat',
+      args: [{
         locale: 'de-DE',
         min: 3.1,
       }],
