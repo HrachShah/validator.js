@@ -8,6 +8,12 @@ import test from './testFunctions';
 let validator_js = fs.readFileSync(require.resolve('../validator.js')).toString();
 
 describe('Validators', () => {
+  it('should compare integer bounds numerically when supplied as strings', () => {
+    assert.strictEqual(validator.isInt('2', { min: '10' }), false);
+    assert.strictEqual(validator.isInt('10', { max: '2' }), false);
+    assert.strictEqual(validator.isInt('10', { gt: '2', lt: '11' }), true);
+  });
+
   it('should accept null-prototype numeric options', () => {
     const options = Object.assign(Object.create(null), { min: 2, max: 4 });
 
