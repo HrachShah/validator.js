@@ -10,6 +10,9 @@ describe('isFQDN', () => {
       ],
       invalid: [
         'google.l33t',
+        'example..com',
+        '.example.com',
+        'example.com.',
       ],
     });
     test({
@@ -20,7 +23,16 @@ describe('isFQDN', () => {
         'google.l33t',
       ],
       invalid: [
+        'example..com',
+        '.example.com',
+        'example.com.',
       ],
+    });
+    test({
+      validator: 'isFQDN',
+      args: [{ allow_trailing_dot: true }],
+      valid: ['example.com.'],
+      invalid: ['example..com.', '.example.com'],
     });
   });
 });

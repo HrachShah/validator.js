@@ -25,6 +25,9 @@ export default function isFQDN(str, options) {
   }
 
   const parts = str.split('.');
+  if (parts.some(part => part.length === 0)) {
+    return false;
+  }
   const tld = parts[parts.length - 1];
 
   if (options.require_tld) {
