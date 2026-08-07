@@ -7497,6 +7497,9 @@ describe('Validators', () => {
         'Zm=8JBSWY3DP',
         '=m9vYg==',
         'Zm9vYm/y====',
+        'J=======',
+        'JBS=====',
+        'JBSWYZ==',
       ],
     });
   });
