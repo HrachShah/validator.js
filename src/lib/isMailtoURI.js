@@ -14,7 +14,9 @@ function parseMailtoQueryString(queryString) {
   }
 
   for (const q of queryParams) {
-    const [key, value] = q.split('=');
+    const separator = q.indexOf('=');
+    const key = separator === -1 ? q : q.slice(0, separator);
+    const value = separator === -1 ? undefined : q.slice(separator + 1);
 
     // checked for invalid and duplicated query params
     if (key && !allowedParams.has(key)) {
