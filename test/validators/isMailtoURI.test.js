@@ -10,4 +10,13 @@ describe('isMailtoURI', () => {
       ],
     });
   });
+
+  it('rejects empty query fields between parameters', () => {
+    test({
+      validator: 'isMailtoURI',
+      invalid: [
+        'mailto:info@mail.com?subject=hello&&body=world',
+      ],
+    });
+  });
 });

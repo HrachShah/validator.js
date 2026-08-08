@@ -13,7 +13,11 @@ function parseMailtoQueryString(queryString) {
     return false;
   }
 
-  for (const q of queryParams) {
+  for (const [index, q] of queryParams.entries()) {
+    if (!q && index !== queryParams.length - 1) {
+      return false;
+    }
+
     const separator = q.indexOf('=');
     const key = separator === -1 ? q : q.slice(0, separator);
     const value = separator === -1 ? undefined : q.slice(separator + 1);
