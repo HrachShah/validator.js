@@ -16,5 +16,23 @@ export default function isBase32(str, options) {
     return crockfordBase32.test(str);
   }
 
-  return str.length % 8 === 0 && base32.test(str);
+  if (!base32.test(str) || str.length % 8 !== 0) {
+    return false;
+  }
+
+  const paddingStart = str.indexOf('=');
+  if (paddingStart === -1) {
+    return true;
+  }
+
+  const paddingLength = str.length - paddingStart;
+  const expectedPadding = {
+    0: 0,
+    2: 6,
+    4: 4,
+    5: 3,
+    7: 1,
+  }[paddingStart % 8];
+
+  return expectedPadding === paddingLength;
 }
