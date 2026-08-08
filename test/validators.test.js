@@ -5730,6 +5730,15 @@ describe('Validators', () => {
   });
 
 
+  it('should treat null byte-length options as the legacy overload', () => {
+    test({
+      validator: 'isByteLength',
+      args: [null],
+      valid: [''],
+      invalid: [],
+    });
+  });
+
   it('should validate strings by byte length', () => {
     test({
       validator: 'isByteLength',
