@@ -1018,6 +1018,14 @@ describe('Validators', () => {
     });
   });
 
+  it('should accept port zero in URLs', () => {
+    test({
+      validator: 'isURL',
+      valid: ['http://example.com:0'],
+      invalid: ['http://example.com:65536'],
+    });
+  });
+
   it('should validate MAC addresses', () => {
     test({
       validator: 'isMACAddress',
